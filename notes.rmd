@@ -1,0 +1,47 @@
+# TASK 0
+
+## A. Execution
+
+**Recherchez la fonction responsable de gérer les inputs du programme**
+
+```
+void TowerSimulation::create_keystrokes() const
+```
+
+Cette fonction est responsable de la gestion des inputs du programme.
+
+**Sur quelle touche faut-il appuyer pour ajouter un avion ?**
+
+Il faut appuyé sur la touche 'c'
+
+**Comment faire pour quitter le programme ?**
+
+on peut appuyé sur la touche 'q' ou 'x'
+
+**A quoi sert la touche 'F' ?**
+
+'f' permet de mettre la fenêtre en plein écran
+
+**Quel est le comportement de l'avion ?**
+
+L'avion tourne autour de l'aéroport lorsque qu'il a fini de déposer les passagers
+à l'aéroport.
+
+**Quelles informations s'affichent dans la console ?**
+
+Voici un exemple de ce qui est affiché dans la console:
+```
+LH6604 is now landing...
+now servicing LH6604...
+done servicing LH6604
+LH6604 lift off
+```
+Ça nous indique les actions de l'avion dans l'aéroport
+
+**Ajoutez maintenant quatre avions d'un coup dans la simulation. Que fait chacun des avions ?**
+
+Les avions attendent qu'il y ait de la place dans l'aéroport pour pouvoir atterrir
+
+## B. Analyse du code
+
+## C. Bidouillons
