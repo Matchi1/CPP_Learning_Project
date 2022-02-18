@@ -44,4 +44,145 @@ Les avions attendent qu'il y ait de la place dans l'aéroport pour pouvoir atter
 
 ## B. Analyse du code
 
+### TowerSimulation
+
+Cette classe gère la simulation du programme, par exemple elle permet de lancer la simulation,
+de simuler la création des avions...
+
+### AircraftType
+
+Cette classe représente les différents types d'avions avec leurs propres caractéristiques.
+
+### AirportType
+
+Cette classe se charge de contenir les chemins qu'un avion doit suivre lorsqu'il est sur la
+piste d'atterissage mais aussi lorsqu'il veut sortir du terminal.
+
+### Config
+
+Cette classe stocke les configurations par défaut du programme, notamment la taille
+de l'écran, la taille d'un avion...
+
+### Geometry
+
+Cette classe représente tous les calculs géométriques nécessaires pour le programme.
+
+### Runway
+
+Cette classe représente les pistes d'atterissage, on peut le comparer à un segment.
+
+### Waypoint
+
+Cette classe représente les points de repères d'un avion, il peut aussi spécifier son type
+c'est-à-dire si le point de repère est sur le sol ou dans les airs.
+
+### Aircraft
+
+Cette classe représente les avions et permet d'effectuer des manoeuvres correspondant à
+un avion, tel que changer de directions, signaler son arrivé à l'aéroport.
+
+```
+const std::string& get_flight_num() const;
+```
+Cette fonction permet de renvoyer l'identifiant de l'avion.
+
+```
+float distance_to(const Point3D& p) const;
+```
+Cette fonction renvoie la distance séparant l'avion et le point entré en paramètre.
+
+```
+void display() const override;
+```
+Cette fonction permet d'afficher l'avion sur la fenêtre.
+
+```
+void move() override;
+```
+Cette fonction s'occupe du déplacement de l'avion vers le prochain point.
+
+### Tower
+
+Cette classe représente une tour de contrôle, elle permet de diriger les avions.
+
+```
+WaypointQueue get_instructions(Aircraft& aircraft);
+```
+Cette fonction s'occupe d'acquérir de nouveaux points de coordonnées.
+
+```
+void arrived_at_terminal(const Aircraft& aircraft);
+```
+Cette fonction indique si un avion est arrivé à un terminal.
+
+### Airport
+
+Cette classe représente un aéroport, elle indique les points d'arrivée d'un avion mais
+aussi les terminaux qu'ils auraient accès.
+
+```
+Tower& get_tower();
+```
+Cette fonction renvoie la tour de contrôle de l'aéroport.
+
+```
+void display() const override;
+```
+Cette fonction s'occupe de dessiner l'aéroport dans la fenêtre.
+
+```
+void move() override;
+```
+Cette fonction s'occupe de faire avancer l'état des services au sein des terminaux.
+C'est-à-dire, on fait défiler les étapes de l'embarquation vers le décollage de l'avion.
+
+### Terminal
+
+Cette classe représente les terminaux, elle va permettre d'accueillir les passagers d'un
+avion et est capable d'indiquer son état.
+
+```
+bool in_use() const;
+```
+Indique si un avion occupe le terminal.
+
+```
+bool is_servicing() const;
+```
+Indique si le terminal est en service, donc si un avion est en train de délivrer les passagers.
+
+```
+void assign_craft(const Aircraft& aircraft);
+```
+Assigne ce terminal à un avion.
+
+```
+void start_service(const Aircraft& aircraft);
+```
+Commence la débarcation/embarcation des passagers dans l'avion.
+
+```
+void finish_service();
+```
+Termine la débarcation/embarcation des passagers dans l'avion.
+
+```
+void move() override;
+```
+Avance à la prochaine étape de débarcation/embarcation des passagers dans l'avion.
+
+**Réalisez ensuite un schéma présentant comment ces différentes classes intéragissent ensemble.**
+
+voir TASK_0.B.1
+
+**Quelles classes et fonctions sont impliquées dans la génération du chemin d'un avion ?**
+
+La classe **tower** se charge de générer des waypoint pour l'avion avec la fonction `get_instructions(Aircraft& aircraft)`.
+
+**Quel conteneur de la librairie standard a été choisi pour représenter le chemin ? Expliquez les intérêts de ce choix.**
+
+Le conteneur utilisé est un **Deque** car on voudrait faire en sorte que l'avion suive un chemin circulaire
+lorsqu'il est en attente d'un terminal libre.
+Cela permet donc d'avoir un chemin continu à l'infini sans faire quoique ce soit.
+
 ## C. Bidouillons
