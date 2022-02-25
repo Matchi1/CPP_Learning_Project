@@ -187,11 +187,14 @@ Cela permet donc d'avoir un chemin continu à l'infini sans faire quoique ce soi
 
 ## C. Bidouillons
 
-**Déterminez à quel endroit du code sont définies les vitesses maximales et accélération de chaque avion.**
+**Déterminez à quel endroit du code sont définies les vitesses maximales et
+accélération de chaque avion.**
 
-Dans le fichier **aircraft_type.hpp**, on définit la vitesse maximales et accélération de chaque avion.
+Dans le fichier **aircraft_type.hpp**, on définit la vitesse et
+l'accélération de chaque avion.
 
-**Le Concorde est censé pouvoir voler plus vite que les autres avions. Modifiez le programme pour tenir compte de cela.**
+**Le Concorde est censé pouvoir voler plus vite que les autres avions.
+Modifiez le programme pour tenir compte de cela.**
 
 ```
 inline void init_aircraft_types()
@@ -201,3 +204,62 @@ inline void init_aircraft_types()
     aircraft_types[2] = new AircraftType { .05f, .10f, .05f, MediaPath { "concorde_af.png" } };
 }
 ```
+
+**Identifiez quelle variable contrôle le framerate de la simulation.**
+
+La variable qui contrôle le framerate de la simulation est la variable
+**ticks_per_sec**
+```
+namespace GL {
+
+inline unsigned int ticks_per_sec = DEFAULT_TICKS_PER_SEC;
+    ...
+}
+```
+
+**Ajoutez deux nouveaux inputs au programme permettant d'augmenter ou de
+diminuer cette valeur.**
+
+```
+void change_framerate(const int value);
+
+```
+Cette fonction permet de permet de changer le framerate selon la valeur
+spécifiée. elle peut être négative ou positive.
+
+```
+void TowerSimulation::create_keystrokes() const
+{
+    ...
+    GL::keystrokes.emplace('m', []() { GL::change_framerate(-1); });
+    GL::keystrokes.emplace('p', []() { GL::change_framerate(1); });
+}
+```
+Voilà ce que l'on doit également ajouter dans le fichier `tower_sim.cpp` pour
+attribuer une action à une touche du clavier.
+
+**Essayez maintenant de mettre en pause le programme en manipulant ce framerate.
+Que se passe-t-il ?**
+
+Lorsque le framerate atteint 0, cela provoque un **Floating point exception**.
+
+**Ajoutez une nouvelle fonctionnalité au programme pour mettre le programme en
+pause, et qui ne passe pas par le framerate.**
+
+```
+void timer(const int step)
+{
+    if (!paused)
+    {
+        for (auto& item : move_queue)
+        {
+            item->move();
+        }
+    }
+    glutPostRedisplay();
+    glutTimerFunc(1000u / ticks_per_sec, timer, step + 1);
+}
+```
+Il suffit d'ajouter une variable qui indique l'état du programme, en l'occurence
+la variable **paused**. Il faut également bloquer les calculs à l'aide de cette
+variable. Le bout de code ci-dessus indique la zone concernée.

@@ -71,11 +71,29 @@ void display(void)
     glutSwapBuffers();
 }
 
+void change_framerate(const int value)
+{
+    ticks_per_sec += value;
+}
+
+void pause()
+{
+    paused = !paused;
+}
+
+void debug()
+{
+    std::cout << "ok" << std::endl;
+}
+
 void timer(const int step)
 {
-    for (auto& item : move_queue)
+    if (!paused)
     {
-        item->move();
+        for (auto& item : move_queue)
+        {
+            item->move();
+        }
     }
     glutPostRedisplay();
     glutTimerFunc(1000u / ticks_per_sec, timer, step + 1);
