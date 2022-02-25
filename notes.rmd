@@ -186,3 +186,18 @@ lorsqu'il est en attente d'un terminal libre.
 Cela permet donc d'avoir un chemin continu à l'infini sans faire quoique ce soit.
 
 ## C. Bidouillons
+
+**Déterminez à quel endroit du code sont définies les vitesses maximales et accélération de chaque avion.**
+
+Dans le fichier **aircraft_type.hpp**, on définit la vitesse maximales et accélération de chaque avion.
+
+**Le Concorde est censé pouvoir voler plus vite que les autres avions. Modifiez le programme pour tenir compte de cela.**
+
+```
+inline void init_aircraft_types()
+{
+    aircraft_types[0] = new AircraftType { .02f, .05f, .02f, MediaPath { "l1011_48px.png" } };
+    aircraft_types[1] = new AircraftType { .02f, .05f, .02f, MediaPath { "b707_jat.png" } };
+    aircraft_types[2] = new AircraftType { .05f, .10f, .05f, MediaPath { "concorde_af.png" } };
+}
+```
