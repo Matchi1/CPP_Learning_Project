@@ -43,7 +43,8 @@ public:
     {
         if (in_use() && is_servicing())
         {
-            ++service_progress;
+            // ++service_progress;
+            service_progress += 2;
         }
     }
 };

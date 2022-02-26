@@ -263,3 +263,17 @@ void timer(const int step)
 Il suffit d'ajouter une variable qui indique l'état du programme, en l'occurence
 la variable **paused**. Il faut également bloquer les calculs à l'aide de cette
 variable. Le bout de code ci-dessus indique la zone concernée.
+
+**Identifiez quelle variable contrôle le temps de débarquement des avions et
+doublez-le.**
+
+```
+void move() override
+{
+    if (in_use() && is_servicing())
+    {
+        // ++service_progress;
+        service_progress += 2;
+    }
+}
+```
