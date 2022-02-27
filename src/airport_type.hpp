@@ -71,8 +71,10 @@ public:
         const Waypoint randomly_high {
             Point3D { std::sin(angle), std::cos(angle), 0 } * 6 + Point3D { 0, 0, 2 }, wp_air
         };
+        const Waypoint remove_aircraft { Point3D { 0, 0, 0 }, wp_unknown };
 
-        WaypointQueue result { crossing, runway_start, runway_middle, later_in_air, randomly_high };
+        WaypointQueue result { crossing,     runway_start,  runway_middle,
+                               later_in_air, randomly_high, remove_aircraft };
 
         if (terminal_num != 0)
         {

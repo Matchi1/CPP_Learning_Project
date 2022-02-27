@@ -94,6 +94,10 @@ void Aircraft::move()
     {
         waypoints = control.get_instructions(*this);
     }
+    if (waypoints[0].is_at_unknown())
+    {
+        GL::remove_queue.emplace(this);
+    }
 
     if (!is_at_terminal)
     {

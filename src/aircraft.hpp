@@ -56,6 +56,7 @@ public:
     {
         speed.cap_length(max_speed());
     }
+    ~Aircraft() { std::cout << "aircraft is now really really far" << std::endl; }
 
     const std::string& get_flight_num() const { return flight_number; }
     float distance_to(const Point3D& p) const { return pos.distance_to(p); }

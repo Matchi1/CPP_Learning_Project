@@ -1,6 +1,7 @@
 #include "tower_sim.hpp"
 
 #include "GL/opengl_interface.hpp"
+#include "GL/displayable.hpp"
 #include "aircraft.hpp"
 #include "airport.hpp"
 #include "config.hpp"

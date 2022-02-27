@@ -67,6 +67,13 @@ void display(void)
     {
         item->display();
     }
+    for (auto& item : remove_queue)
+    {
+        Displayable* element = (Displayable*) item;
+        display_queue.erase(std::remove(display_queue.begin(), display_queue.end(), element),
+                            display_queue.end());
+    }
+    remove_queue.clear();
     glDisable(GL_TEXTURE_2D);
     glutSwapBuffers();
 }
@@ -94,6 +101,10 @@ void timer(const int step)
         {
             item->move();
         }
+    }
+    for (auto& item : remove_queue)
+    {
+        move_queue.erase((DynamicObject*)item);
     }
     glutPostRedisplay();
     glutTimerFunc(1000u / ticks_per_sec, timer, step + 1);
