@@ -287,3 +287,22 @@ qu'on ajoute l'aircraft dans une liste, plutôt que de le faire implicitement.
 
 De même pour la desctruction, on veut que le développeur ne soit pas trop perdu
 lorsque l'on supprime un élément de la **move_queue**.
+
+# TASK 1
+
+# Exercice A
+
+**Créer une nouvelle classe AircraftManager**
+
+Cela va permettre de rendre le code plus organisé car on essaye de respecter le
+principe du **une classe, une responsabilité**.
+Cela permet de rendre plus *sécurisé* car on sera obliger de passer par cette
+classe pour pouvoir créer ou supprimer des aircrafts.
+
+**Donner ce rôle à une classe existante**
+
+Cela va permettre de rendre le code plus *intuitif*, par exemple déléguer la
+création des aircrafts aux airports, ce qui semble logique et permet au
+développeur de s'y retrouver.
+Néanmoins, cela complexifie la tâche de la classe en question car on lui rajoute
+une responsabilité / tâche supplémentaire.
