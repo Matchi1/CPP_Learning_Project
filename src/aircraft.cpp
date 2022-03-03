@@ -96,7 +96,7 @@ void Aircraft::move()
     }
     if (waypoints[0].is_at_unknown())
     {
-        GL::remove_queue.emplace(this);
+        GL::remove_queue.emplace_back(this);
     }
 
     if (!is_at_terminal)
