@@ -290,7 +290,7 @@ lorsque l'on supprime un élément de la **move_queue**.
 
 # TASK 1
 
-# Exercice A
+## Exercice A
 
 **Créer une nouvelle classe AircraftManager**
 
@@ -306,3 +306,35 @@ création des aircrafts aux airports, ce qui semble logique et permet au
 développeur de s'y retrouver.
 Néanmoins, cela complexifie la tâche de la classe en question car on lui rajoute
 une responsabilité / tâche supplémentaire.
+
+## Exercice B
+
+**Qui est responsable de détruire les avions du programme ?**
+
+**opengl_interface** est responsable de la suppression des avions du programme
+car la fonction `timer()` s'occupe de faire l'actualisation de l'état des
+aircrafts.
+
+**Quelles autres structures contiennent une référence sur un avion au moment où
+il doit être détruit ?**
+
+**display_queue** et **move_queue** contiennent l'aircraft doit être supprimé.
+
+**Comment fait-on pour supprimer la référence sur un avion qui va être détruit
+dans ces structures ?**
+
+Il faut d'abord supprimer la référence de l'aircraft dans les conteneurs (avec
+un erase). Puis, on peut effectuer la destruction de l'aircraft avec le mot-clef
+**delete**.
+
+On fait d'ailleurs la suppression automatique des aircrafts des conteneurs
+depuis l'objet. L'aircraft accède donc directement à la liste des aircrafts.
+
+**Pourquoi n'est-il pas très judicieux d'essayer d'appliquer la même chose pour
+votre AircraftManager ?**
+
+Il n'est pas judicieux de le faire car il faudrait que Aircraft ait accès à
+AircraftManager, ce qui est contre-intuitif et incohérent car un Aircraft ne
+devrait pas pouvoir avoir accès à l'objet qui le gère.
+
+Donc, c'est bien à AircraftManager de gérer la destruction des Aircrafts.
