@@ -28,7 +28,7 @@ TowerSimulation::~TowerSimulation()
     delete manager;
 }
 
-void TowerSimulation::create_keystrokes() const
+void TowerSimulation::create_keystrokes()
 {
     GL::keystrokes.emplace('x', []() { GL::exit_loop(); });
     GL::keystrokes.emplace('q', []() { GL::exit_loop(); });

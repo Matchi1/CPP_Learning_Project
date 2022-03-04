@@ -3,9 +3,6 @@
 #include "aircraft_manager.hpp"
 #include "aircraft_factory.hpp"
 
-#include <memory>
-#include <vector>
-
 class Airport;
 class Aircraft;
 struct AircraftType;
@@ -31,7 +28,7 @@ private:
     TowerSimulation(const TowerSimulation&) = delete;
     TowerSimulation& operator=(const TowerSimulation&) = delete;
 
-    void create_keystrokes() const;
+    void create_keystrokes();
     void display_help() const;
 
     void init_airport();
