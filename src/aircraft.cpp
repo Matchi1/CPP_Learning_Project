@@ -89,7 +89,7 @@ void Aircraft::add_waypoint(const Waypoint& wp, const bool front)
     }
 }
 
-void Aircraft::move()
+bool Aircraft::move()
 {
     if (waypoints.empty())
     {
@@ -97,7 +97,7 @@ void Aircraft::move()
     }
     if (waypoints[0].is_at_unknown())
     {
-        remove_queue.emplace_back(get_flight_num());
+        return true;
     }
 
     if (!is_at_terminal)
@@ -141,6 +141,7 @@ void Aircraft::move()
         // update the z-value of the displayable structure
         GL::Displayable::z = pos.x() + pos.y();
     }
+    return false;
 }
 
 void Aircraft::display() const

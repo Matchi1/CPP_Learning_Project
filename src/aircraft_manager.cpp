@@ -5,17 +5,21 @@ void AircraftManager::add(std::unique_ptr<Aircraft> aircraft)
     aircrafts.emplace(aircraft->get_flight_num(), std::move(aircraft));
 }
 
-void AircraftManager::move()
+bool AircraftManager::move()
 {
     for (const auto& [key, value] : aircrafts)
     {
-        value->move();
+        if(value->move())
+        {
+            remove_queue.emplace_back(key);
+        }
     }
     for (auto flight : remove_queue) 
     {
         remove(flight);
     }
     remove_queue.clear();
+    return false;
 }
 
 void AircraftManager::remove(const std::string flight_num)

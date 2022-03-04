@@ -296,6 +296,14 @@ de l'aéroport ?**
 On a fait en sorte que ce soit la seule classe qui puisse fournir les instructions
 aux avions, et donc d'attribuer les terminaux aux avions.
 
+**Pourquoi selon-vous ne sommes-nous pas passer par une réference ?**
+
+On n'est pas passé par référence car il est très peu probable pour un avion d'avoir
+les mêmes waypoint qu'un autre avoi
+
+**Pensez-vous qu'il soit possible d'éviter la copie du Point3D passé en paramètre ?**
+
+
 # TASK 1
 
 ## Exercice A
