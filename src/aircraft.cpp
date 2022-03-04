@@ -1,6 +1,7 @@
 #include "aircraft.hpp"
 
 #include "GL/opengl_interface.hpp"
+#include "aircraft_manager.hpp"
 
 #include <cmath>
 
@@ -96,7 +97,7 @@ void Aircraft::move()
     }
     if (waypoints[0].is_at_unknown())
     {
-        GL::remove_queue.emplace_back(this);
+        remove_queue.emplace_back(get_flight_num());
     }
 
     if (!is_at_terminal)

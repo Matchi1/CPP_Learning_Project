@@ -95,12 +95,6 @@ void timer(const int step)
         {
             item->move();
         }
-        for (auto it = remove_queue.begin(); it != remove_queue.end(); it++)
-        {
-            move_queue.erase(*it);
-            delete *it;
-        }
-        remove_queue.clear();
         glutPostRedisplay();
     }
     glutTimerFunc(1000u / ticks_per_sec, timer, step + 1);

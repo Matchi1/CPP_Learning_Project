@@ -13,6 +13,5 @@ public:
 };
 
 inline std::unordered_set<DynamicObject*> move_queue;
-inline std::vector<DynamicObject*> remove_queue;
 
 } // namespace GL

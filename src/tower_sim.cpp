@@ -29,6 +29,7 @@ TowerSimulation::TowerSimulation(int argc, char** argv) :
 TowerSimulation::~TowerSimulation()
 {
     delete airport;
+    delete manager;
 }
 
 void TowerSimulation::create_aircraft(const AircraftType& type) const
@@ -40,8 +41,7 @@ void TowerSimulation::create_aircraft(const AircraftType& type) const
     const Point3D start     = Point3D { std::sin(angle), std::cos(angle), 0 } * 3 + Point3D { 0, 0, 2 };
     const Point3D direction = (-start).normalize();
 
-    Aircraft* aircraft = new Aircraft { type, flight_number, start, direction, airport->get_tower() };
-    GL::move_queue.emplace(aircraft);
+    manager->add(std::make_unique<Aircraft>( type, flight_number, start, direction, airport->get_tower() ));
 }
 
 void TowerSimulation::create_random_aircraft() const
@@ -84,6 +84,12 @@ void TowerSimulation::init_airport()
     GL::move_queue.emplace(airport);
 }
 
+void TowerSimulation::init_aircraft_manager()
+{
+    manager = new AircraftManager {};
+    GL::move_queue.emplace(manager);
+}
+
 void TowerSimulation::launch()
 {
     if (help)
@@ -93,6 +99,7 @@ void TowerSimulation::launch()
     }
 
     init_airport();
+    init_aircraft_manager();
     init_aircraft_types();
 
     GL::loop();
