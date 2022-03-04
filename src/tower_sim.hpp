@@ -21,7 +21,7 @@ class TowerSimulation
 private:
     bool help                = false;
     Airport* airport         = nullptr;
-    AircraftManager* manager = nullptr;
+    AircraftManager manager;
     ContextInitializer context_initializer;
     AircraftFactory factory;
 

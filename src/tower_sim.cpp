@@ -16,6 +16,7 @@ using namespace std::string_literals;
 
 TowerSimulation::TowerSimulation(int argc, char** argv) :
     help { (argc > 1) && (std::string { argv[1] } == "--help"s || std::string { argv[1] } == "-h"s) }
+    , manager {}
     , context_initializer { argc, argv }
     , factory {} 
 {
@@ -25,14 +26,13 @@ TowerSimulation::TowerSimulation(int argc, char** argv) :
 TowerSimulation::~TowerSimulation()
 {
     delete airport;
-    delete manager;
 }
 
 void TowerSimulation::create_keystrokes()
 {
     GL::keystrokes.emplace('x', []() { GL::exit_loop(); });
     GL::keystrokes.emplace('q', []() { GL::exit_loop(); });
-    GL::keystrokes.emplace('c', [this]() { manager->add(factory.create_random_aircraft(airport)); });
+    GL::keystrokes.emplace('c', [this]() { manager.add(factory.create_random_aircraft(airport)); });
     GL::keystrokes.emplace('+', []() { GL::change_zoom(0.95f); });
     GL::keystrokes.emplace('-', []() { GL::change_zoom(1.05f); });
     GL::keystrokes.emplace('f', []() { GL::toggle_fullscreen(); });
@@ -65,8 +65,7 @@ void TowerSimulation::init_airport()
 
 void TowerSimulation::init_aircraft_manager()
 {
-    manager = new AircraftManager {};
-    GL::move_queue.emplace(manager);
+    GL::move_queue.emplace(&manager);
 }
 
 void TowerSimulation::launch()
