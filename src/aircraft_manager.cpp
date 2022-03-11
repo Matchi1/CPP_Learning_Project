@@ -13,3 +13,9 @@ bool AircraftManager::move()
                               aircrafts.end());
     return false;
 }
+
+int AircraftManager::count_aircrafts(std::string airline)
+{
+    return std::count_if(aircrafts.begin(), aircrafts.end(),
+    [airline](std::unique_ptr<Aircraft>& aircraft){ return aircraft->get_flight_num().substr(0, 2) == airline;});
+}

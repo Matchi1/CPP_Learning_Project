@@ -39,6 +39,14 @@ void TowerSimulation::create_keystrokes()
     GL::keystrokes.emplace('m', []() { GL::change_framerate(-1); });
     GL::keystrokes.emplace('p', []() { GL::change_framerate(1); });
     GL::keystrokes.emplace('P', []() { GL::pause(); });
+    for(auto i = 0; i < 8; i++)
+    {
+        GL::keystrokes.emplace('0' + i, [this, i]() { 
+            auto airline = factory.get_airlines(i);
+            auto count = manager.count_aircrafts(airline);
+            std::cout << airline << " : " << count << std::endl;
+            });
+    }
 }
 
 void TowerSimulation::display_help() const
