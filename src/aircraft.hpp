@@ -20,6 +20,7 @@ private:
     Tower& control;
     bool landing_gear_deployed = false; // is the landing gear deployed?
     bool is_at_terminal        = false;
+    int fuel = 150 + rand() % (2850);
 
     // turn the aircraft to arrive at the next waypoint
     // try to facilitate reaching the waypoint after the next by facing the
@@ -56,7 +57,16 @@ public:
     {
         speed.cap_length(max_speed());
     }
-    ~Aircraft() { std::cout << "aircraft is now really really far" << std::endl; }
+    ~Aircraft() {
+        if(this->fuel > 0)
+        {
+            std::cout << "aircraft is now really really far" << std::endl;
+        }
+        else
+        {
+            std::cout << "MAYDAY!! MAYDAY!! aircraft is crashing" << std::endl;
+        }
+    }
 
     const std::string& get_flight_num() const { return flight_number; }
     float distance_to(const Point3D& p) const { return pos.distance_to(p); }

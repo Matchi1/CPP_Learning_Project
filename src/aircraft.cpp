@@ -95,13 +95,14 @@ bool Aircraft::move()
     {
         waypoints = control.get_instructions(*this);
     }
-    if (waypoints[0].is_at_unknown())
+    if (waypoints[0].is_at_unknown() || this->fuel <= 0)
     {
         return true;
     }
 
     if (!is_at_terminal)
     {
+        this->fuel--;
         turn_to_waypoint();
         // move in the direction of the current speed
         pos += speed;
