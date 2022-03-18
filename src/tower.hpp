@@ -27,6 +27,7 @@ private:
 public:
     Tower(Airport& airport_) : airport { airport_ } {}
 
+    WaypointQueue reserve_terminal(Aircraft& aircraft);
     // produce instructions for aircraft
     WaypointQueue get_instructions(Aircraft& aircraft);
     void arrived_at_terminal(const Aircraft& aircraft);
