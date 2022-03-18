@@ -149,3 +149,8 @@ void Aircraft::display() const
 {
     type.texture.draw(project_2D(pos), { PLANE_TEXTURE_DIM, PLANE_TEXTURE_DIM }, get_speed_octant());
 }
+
+bool Aircraft::has_terminal() const
+{
+    return waypoints.back().is_at_terminal();
+}
