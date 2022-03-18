@@ -94,6 +94,7 @@ bool Aircraft::move()
     if (waypoints.empty())
     {
         waypoints = control.get_instructions(*this);
+
     }
     if (waypoints[0].is_at_unknown() || this->fuel <= 0)
     {
@@ -153,4 +154,9 @@ void Aircraft::display() const
 bool Aircraft::has_terminal() const
 {
     return waypoints.back().is_at_terminal();
+}
+
+bool Aircraft::is_circling() const
+{
+    return this->waiting;
 }
