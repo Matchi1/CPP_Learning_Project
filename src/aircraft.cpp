@@ -91,10 +91,18 @@ void Aircraft::add_waypoint(const Waypoint& wp, const bool front)
 
 bool Aircraft::move()
 {
+    if (waiting)
+    {
+        auto new_waypoints = control.reserve_terminal(*this);
+        if (!new_waypoints.empty())
+        {
+            waypoints = (WaypointQueue) new_waypoints;
+            waiting = false;
+        }
+    }
     if (waypoints.empty())
     {
         waypoints = control.get_instructions(*this);
-
     }
     if (waypoints[0].is_at_unknown() || this->fuel <= 0)
     {
