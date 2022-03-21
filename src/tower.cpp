@@ -68,6 +68,20 @@ void Tower::arrived_at_terminal(const Aircraft& aircraft)
     airport.get_terminal(it->second).start_service(aircraft);
 }
 
+void Tower::remove_aircraft(const Aircraft& aircraft)
+{
+    // get a path for the craft to start
+    if(aircraft.has_terminal())
+    {
+        const auto it = reserved_terminals.find(&aircraft);
+        assert(it != reserved_terminals.end());
+        const auto terminal_num = it->second;
+        auto& terminal          = airport.get_terminal(terminal_num);
+        terminal.remove_craft();
+        reserved_terminals.erase(it);
+    }
+}
+
 WaypointQueue Tower::reserve_terminal(Aircraft& aircraft)
 {
     // try and reserve a terminal for the craft to land

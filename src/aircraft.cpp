@@ -168,3 +168,8 @@ bool Aircraft::is_circling() const
 {
     return this->waiting;
 }
+    
+int Aircraft::get_fuel() const
+{
+    return fuel;
+}
