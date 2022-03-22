@@ -161,14 +161,18 @@ void Aircraft::display() const
 
 bool Aircraft::has_terminal() const
 {
-    return waypoints.back().is_at_terminal();
+    if (!waypoints.empty())
+    {
+        return waypoints.back().is_at_terminal();
+    }
+    return is_at_terminal;
 }
 
 bool Aircraft::is_circling() const
 {
-    return this->waiting;
+    return waiting;
 }
-    
+
 int Aircraft::get_fuel() const
 {
     return fuel;
