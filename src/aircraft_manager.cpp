@@ -37,6 +37,11 @@ bool AircraftManager::move()
                                    [](std::unique_ptr<Aircraft>& aircraft) { return aircraft->move(); }),
                     aircrafts.end());
     std::sort(aircrafts.begin(), aircrafts.end(), sort_aircrafts);
+    for (const auto& a : aircrafts)
+    {
+        std::cout << a->has_terminal() << "/" << a->get_fuel() << std::endl;
+    }
+    std::cout << "------------------" << std::endl;
     return false;
 }
 

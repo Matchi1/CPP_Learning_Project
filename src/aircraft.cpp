@@ -111,7 +111,6 @@ bool Aircraft::move()
 
     if (!is_at_terminal)
     {
-        this->fuel--;
         turn_to_waypoint();
         // move in the direction of the current speed
         pos += speed;
@@ -140,6 +139,7 @@ bool Aircraft::move()
         }
         else
         {
+            fuel--;
             // if we are in the air, but too slow, then we will sink!
             const float speed_len = speed.length();
             if (speed_len < SPEED_THRESHOLD)
@@ -176,4 +176,9 @@ bool Aircraft::is_circling() const
 int Aircraft::get_fuel() const
 {
     return fuel;
+}
+
+bool Aircraft::is_low_on_fuel() const
+{
+    return fuel < 200;
 }

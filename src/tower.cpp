@@ -71,7 +71,7 @@ void Tower::arrived_at_terminal(const Aircraft& aircraft)
 void Tower::remove_aircraft(const Aircraft& aircraft)
 {
     // get a path for the craft to start
-    if(aircraft.has_terminal())
+    if (aircraft.has_terminal())
     {
         const auto it = reserved_terminals.find(&aircraft);
         assert(it != reserved_terminals.end());

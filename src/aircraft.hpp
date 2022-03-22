@@ -59,7 +59,6 @@ public:
         speed.cap_length(max_speed());
     }
     ~Aircraft() {
-        control.remove_aircraft(*this);
         if(this->fuel > 0)
         {
             std::cout << "aircraft is now really really far" << std::endl;
@@ -79,6 +78,7 @@ public:
     bool has_terminal() const;
     bool is_circling() const;
     int get_fuel() const;
+    bool is_low_on_fuel() const;
 
     friend class Tower;
 };
