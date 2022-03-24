@@ -20,8 +20,8 @@ private:
     Tower& control;
     bool landing_gear_deployed = false; // is the landing gear deployed?
     bool is_at_terminal        = false;
-    int fuel = 150 + rand() % (2850);
-    bool waiting = false;
+    int fuel                   = 150 + rand() % 2850;
+    bool waiting               = false;
 
     // turn the aircraft to arrive at the next waypoint
     // try to facilitate reaching the waypoint after the next by facing the
@@ -58,8 +58,9 @@ public:
     {
         speed.cap_length(max_speed());
     }
-    ~Aircraft() {
-        if(this->fuel > 0)
+    ~Aircraft()
+    {
+        if (this->fuel > 0)
         {
             std::cout << "aircraft is now really really far" << std::endl;
         }
@@ -79,6 +80,7 @@ public:
     bool is_circling() const;
     int get_fuel() const;
     bool is_low_on_fuel() const;
+    bool waiting_at_terminal() const;
 
     friend class Tower;
 };

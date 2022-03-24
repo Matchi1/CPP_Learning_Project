@@ -48,5 +48,12 @@ bool AircraftManager::move()
 int AircraftManager::count_aircrafts(std::string airline)
 {
     return std::count_if(aircrafts.begin(), aircrafts.end(),
-    [airline](std::unique_ptr<Aircraft>& aircraft){ return aircraft->get_flight_num().substr(0, 2) == airline;});
+                         [airline](std::unique_ptr<Aircraft>& aircraft)
+                         { return aircraft->get_flight_num().substr(0, 2) == airline; });
+}
+
+int AircraftManager::get_required_fuel()
+{
+    return std::accumulate(aircrafts.begin(), aircrafts.end(), 0,
+                           [](int res, std::unique_ptr<Aircraft>& aircraft) { return res + 3000 - aircraft->get_fuel(); });
 }

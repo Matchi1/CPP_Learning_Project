@@ -96,8 +96,8 @@ bool Aircraft::move()
         auto new_waypoints = control.reserve_terminal(*this);
         if (!new_waypoints.empty())
         {
-            waypoints = (WaypointQueue) new_waypoints;
-            waiting = false;
+            waypoints = (WaypointQueue)new_waypoints;
+            waiting   = false;
         }
     }
     if (waypoints.empty())
@@ -181,4 +181,9 @@ int Aircraft::get_fuel() const
 bool Aircraft::is_low_on_fuel() const
 {
     return fuel < 200;
+}
+
+bool Aircraft::waiting_at_terminal() const
+{
+    return is_at_terminal;
 }
