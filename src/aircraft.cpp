@@ -187,3 +187,14 @@ bool Aircraft::waiting_at_terminal() const
 {
     return is_at_terminal;
 }
+
+void Aircraft::refill(int& fuel_stock)
+{
+    if (fuel_stock > 0)
+    {
+        auto needed = 3000 - fuel;
+        auto stock = fuel_stock < needed ? fuel_stock : needed;
+        fuel += stock;
+        fuel_stock -= stock;
+    }
+}

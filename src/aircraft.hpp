@@ -81,6 +81,7 @@ public:
     int get_fuel() const;
     bool is_low_on_fuel() const;
     bool waiting_at_terminal() const;
+    void refill(int& fuel_stock);
 
     friend class Tower;
 };
