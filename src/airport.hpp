@@ -3,6 +3,7 @@
 #include "GL/displayable.hpp"
 #include "GL/dynamic_object.hpp"
 #include "GL/texture.hpp"
+#include "aircraft_manager.hpp"
 #include "airport_type.hpp"
 #include "geometry.hpp"
 #include "img/image.hpp"
@@ -11,8 +12,6 @@
 #include "tower.hpp"
 
 #include <vector>
-
-class AircraftManager;
 
 class Airport : public GL::Displayable, public GL::DynamicObject
 {
@@ -74,6 +73,25 @@ public:
 
     bool move() override
     {
+        if (next_refill_time == 0)
+        {
+            std::cout << "old fuel stock : " << fuel_stock << std::endl;
+            std::cout << "fuel received : " << ordered_fuel << std::endl;
+            fuel_stock += ordered_fuel;
+            std::cout << "new fuel stock : " << fuel_stock << std::endl;
+            auto required_fuel = manager->get_required_fuel();
+            ordered_fuel = required_fuel < 5000 ? required_fuel : 5000;
+            next_refill_time = 100;
+
+        }
+        else
+        {
+            next_refill_time--;
+            for(auto& terminal : terminals)
+            {
+                terminal.refill_aircraft_if_needed(fuel_stock);
+            }
+        }
         for (auto& t : terminals)
         {
             t.move();
