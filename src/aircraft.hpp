@@ -20,7 +20,7 @@ private:
     Tower& control;
     bool landing_gear_deployed = false; // is the landing gear deployed?
     bool is_at_terminal        = false;
-    int fuel                   = 150 + rand() % 2850;
+    int fuel                   = FUEL_THRESHOLD + rand() % (FUEL_MAX - FUEL_THRESHOLD);
     bool waiting               = false;
 
     // turn the aircraft to arrive at the next waypoint

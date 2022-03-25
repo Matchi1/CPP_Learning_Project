@@ -186,7 +186,7 @@ int Aircraft::get_fuel() const
 
 bool Aircraft::is_low_on_fuel() const
 {
-    return fuel < 200;
+    return fuel < FUEL_THRESHOLD;
 }
 
 bool Aircraft::waiting_at_terminal() const
@@ -198,7 +198,7 @@ void Aircraft::refill(int& fuel_stock)
 {
     if (fuel_stock > 0)
     {
-        auto needed = 3000 - fuel;
+        auto needed = FUEL_MAX - fuel;
         auto stock  = fuel_stock < needed ? fuel_stock : needed;
         fuel += stock;
         fuel_stock -= stock;
