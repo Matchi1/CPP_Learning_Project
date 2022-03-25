@@ -82,7 +82,6 @@ public:
             auto required_fuel = manager->get_required_fuel();
             ordered_fuel = required_fuel < 5000 ? required_fuel : 5000;
             next_refill_time = 100;
-
         }
         else
         {

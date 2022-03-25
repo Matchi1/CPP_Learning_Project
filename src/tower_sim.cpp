@@ -18,7 +18,7 @@ TowerSimulation::TowerSimulation(int argc, char** argv) :
     help { (argc > 1) && (std::string { argv[1] } == "--help"s || std::string { argv[1] } == "-h"s) }
     , manager {}
     , context_initializer { argc, argv }
-    , factory {} 
+    , factory {}
 {
     create_keystrokes();
 }
@@ -39,13 +39,14 @@ void TowerSimulation::create_keystrokes()
     GL::keystrokes.emplace('m', []() { GL::change_framerate(-1); });
     GL::keystrokes.emplace('p', []() { GL::change_framerate(1); });
     GL::keystrokes.emplace('P', []() { GL::pause(); });
+    GL::keystrokes.emplace('n', [this]() { manager.display_crashes(); });
     for(auto i = 0; i < 8; i++)
     {
-        GL::keystrokes.emplace('0' + i, [this, i]() { 
+        GL::keystrokes.emplace('0' + i, [this, i]() {
             auto airline = factory.get_airlines(i);
             auto count = manager.count_aircrafts(airline);
             std::cout << airline << " : " << count << std::endl;
-            });
+        });
     }
 }
 
