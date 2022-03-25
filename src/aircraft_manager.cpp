@@ -34,7 +34,17 @@ bool sort_aircrafts(const std::unique_ptr<Aircraft>& a, const std::unique_ptr<Ai
 bool AircraftManager::move()
 {
     aircrafts.erase(std::remove_if(aircrafts.begin(), aircrafts.end(),
-                                   [](std::unique_ptr<Aircraft>& aircraft) { return aircraft->move(); }),
+                                   [](std::unique_ptr<Aircraft>& aircraft)
+                                   {
+                                       try
+                                       {
+                                           return aircraft->move();
+                                       } catch (const AircraftCrash& err)
+                                       {
+                                           std::cerr << "An aircraft just crashed" << std::endl;
+                                           return true;
+                                       }
+                                   }),
                     aircrafts.end());
     std::sort(aircrafts.begin(), aircrafts.end(), sort_aircrafts);
     for (const auto& a : aircrafts)
@@ -55,5 +65,6 @@ int AircraftManager::count_aircrafts(std::string airline)
 int AircraftManager::get_required_fuel() const
 {
     return std::accumulate(aircrafts.begin(), aircrafts.end(), 0,
-                           [](int res, const std::unique_ptr<Aircraft>& aircraft) { return res + 3000 - aircraft->get_fuel(); });
+                           [](int res, const std::unique_ptr<Aircraft>& aircraft)
+                           { return res + 3000 - aircraft->get_fuel(); });
 }
