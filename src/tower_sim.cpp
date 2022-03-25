@@ -65,6 +65,7 @@ void TowerSimulation::display_help() const
 
 void TowerSimulation::init_airport()
 {
+    assert (airport == nullptr);
     airport = new Airport { &manager, one_lane_airport, Point3D { 0, 0, 0 },
                             new img::Image { one_lane_airport_sprite_path.get_full_path() } };
 
@@ -74,6 +75,7 @@ void TowerSimulation::init_airport()
 
 void TowerSimulation::init_aircraft_manager()
 {
+    assert (GL::move_queue.find(&manager) == GL::move_queue.end());
     GL::move_queue.emplace(&manager);
 }
 
