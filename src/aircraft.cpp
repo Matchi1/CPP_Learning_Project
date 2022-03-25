@@ -104,7 +104,7 @@ bool Aircraft::move()
     {
         waypoints = control.get_instructions(*this);
     }
-    if (waypoints[0].is_at_unknown() || this->fuel <= 0)
+    if (waypoints[0].is_at_unknown())
     {
         return true;
     }
@@ -128,7 +128,6 @@ bool Aircraft::move()
             }
             waypoints.pop_front();
         }
-
         if (is_on_ground())
         {
             if (!landing_gear_deployed)
@@ -139,7 +138,15 @@ bool Aircraft::move()
         }
         else
         {
-            fuel--;
+            if (fuel > 0)
+            {
+                fuel--;
+            }
+            else
+            {
+                using namespace std::string_literals;
+                throw AircraftCrash { flight_number + " crashed into the ground"s };
+            }
             // if we are in the air, but too slow, then we will sink!
             const float speed_len = speed.length();
             if (speed_len < SPEED_THRESHOLD)
@@ -147,7 +154,6 @@ bool Aircraft::move()
                 pos.z() -= SINK_FACTOR * (SPEED_THRESHOLD - speed_len);
             }
         }
-
         // update the z-value of the displayable structure
         GL::Displayable::z = pos.x() + pos.y();
     }
