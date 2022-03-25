@@ -68,7 +68,7 @@ void Tower::arrived_at_terminal(const Aircraft& aircraft)
     airport.get_terminal(it->second).start_service(aircraft);
 }
 
-void Tower::remove_aircraft(const Aircraft& aircraft)
+void Tower::cancel_landing(const Aircraft& aircraft)
 {
     // get a path for the craft to start
     if (aircraft.has_terminal())

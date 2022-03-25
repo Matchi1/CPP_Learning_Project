@@ -31,5 +31,5 @@ public:
     // produce instructions for aircraft
     WaypointQueue get_instructions(Aircraft& aircraft);
     void arrived_at_terminal(const Aircraft& aircraft);
-    void remove_aircraft(const Aircraft& aircraft);
+    void cancel_landing(const Aircraft& aircraft);
 };
