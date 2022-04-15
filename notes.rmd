@@ -363,3 +363,18 @@ Donc, c'est bien à AircraftManager de gérer la destruction des Aircrafts.
 compile ?**
 
 Il faut rajouter le mot-clef *constexpr* devant `auto front = false;`.
+
+## Objective 2
+
+**Que se passe-t-il ?**
+
+Une erreur se produit lorsque l'on essaye d'instancier un Point2D avec 3
+argument.
+
+> error: too many initializers for ‘std::array<float, 2>
+
+**Comment pourriez-vous expliquer que cette erreur ne se produise que
+maintenant ?**
+
+Il y a une erreur car il y a trop de valeurs d'initialisation contrairement à la
+taille du tableau.
