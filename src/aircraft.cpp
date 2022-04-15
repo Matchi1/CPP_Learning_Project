@@ -102,7 +102,11 @@ bool Aircraft::move()
     }
     if (waypoints.empty())
     {
-        waypoints = control.get_instructions(*this);
+        constexpr auto front = false;
+        for (const auto& wp: control.get_instructions(*this))
+        {
+            add_waypoint(wp, front);
+        }
     }
     if (waypoints[0].is_at_unknown())
     {
