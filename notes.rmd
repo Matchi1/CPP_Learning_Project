@@ -378,3 +378,8 @@ maintenant ?**
 
 Il y a une erreur car il y a trop de valeurs d'initialisation contrairement à la
 taille du tableau.
+
+**Que se passe-t-il maintenant si vous essayez d'instancier un Point3D avec 2
+arguments ?**
+
+Aucune erreur ne se produit.

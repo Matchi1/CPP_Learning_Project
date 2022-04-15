@@ -8,7 +8,7 @@ void test_generic_point() {
     p1 += p2;
     p1 *= 3.; // ou 3.f, ou 3.0 en fonction du type de Point
     std::cout << p3.x() << std::endl;
-    Point2D p4 {1., 1., 1.};
+    Point3D p4 {1., 1.};
 }
 
 int main(int argc, char** argv)

@@ -14,7 +14,9 @@ public:
     Point() = default;
 
     Point(ElementType x, ElementType y)
-        : values { x, y } {}
+        : values { x, y } {
+            static_assert(Size == 2);
+        }
 
     Point(ElementType x, ElementType y, ElementType z)
         : values { x, y, z } {}
