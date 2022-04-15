@@ -354,3 +354,12 @@ AircraftManager, ce qui est contre-intuitif et incohérent car un Aircraft ne
 devrait pas pouvoir avoir accès à l'objet qui le gère.
 
 Donc, c'est bien à AircraftManager de gérer la destruction des Aircrafts.
+
+# TASK 4
+
+## Objective 1
+
+**Que devez-vous changer dans l'appel de la fonction pour que le programme 
+compile ?**
+
+Il faut rajouter le mot-clef *constexpr* devant `auto front = false;`.
