@@ -8,7 +8,16 @@ template <size_t Size, typename ElementType>
 class Point
 {
 public:
+
+    std::array<ElementType, Size> values;
+
     Point() = default;
+
+    Point(ElementType x, ElementType y)
+        : values { x, y } {}
+
+    Point(ElementType x, ElementType y, ElementType z)
+        : values { x, y, z } {}
 
     ElementType& x() { return values[0]; }
     ElementType x() const { return values[0]; }
@@ -40,22 +49,29 @@ public:
     Point& operator+=(const Point& other)
     {
         std::transform(values.begin(), values.end(), other.values.begin(), values.begin(),
-                       std::plus<ElementType>());
+                       std::plus<float>());
         return *this;
     }
 
     Point& operator-=(const Point& other)
     {
         std::transform(values.begin(), values.end(), other.values.begin(), values.begin(),
-                       std::minus<ElementType>());
+                       std::minus<float>());
         return *this;
     }
 
-    Point& operator*=(const ElementType scalar)
+    Point& operator*=(const float scalar)
     {
         std::transform(values.begin(), values.end(), values.begin(),
-                       [scalar](ElementType value) -> ElementType { return value * scalar; });
+                       [scalar](float value) -> float { return value * scalar; });
         return *this;
+    }
+
+    Point& operator*=(const Point& other)
+    {
+        auto& point = *this;
+        point *= other;
+        return point;
     }
 
     Point operator+(const Point& other) const
@@ -72,7 +88,9 @@ public:
         return result;
     }
 
-    Point operator*(const ElementType scalar) const
+    Point operator-() const { return Point { -x(), -y(), -z() }; }
+
+    Point operator*(const float scalar) const
     {
         Point result = *this;
         result *= scalar;
@@ -81,7 +99,7 @@ public:
 
     Point operator*(const Point& other) const
     {
-        Point2D result = *this;
+        Point result = *this;
         result *= other;
         return result;
     }
@@ -93,9 +111,9 @@ public:
 
     float distance_to(const Point& other) const { return (*this - other).length(); }
 
-    Point& normalize(const ElementType target_len = 1.0f)
+    Point& normalize(const float target_len = 1.0f)
     {
-        const ElementType current_len = length();
+        const float current_len = length();
         if (current_len == 0)
         {
             throw std::logic_error("cannot normalize vector of length 0");
@@ -105,7 +123,7 @@ public:
         return *this;
     }
 
-    Point& cap_length(const ElementType max_len)
+    Point& cap_length(const float max_len)
     {
         assert(max_len > 0);
 
@@ -117,7 +135,4 @@ public:
 
         return *this;
     }
-
-private:
-    std::array<ElementType, Size> values;
 };
