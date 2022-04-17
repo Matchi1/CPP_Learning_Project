@@ -117,8 +117,8 @@ Cette fonction indique si un avion est arrivé à un terminal.
 
 ### Airport
 
-Cette classe représente un aéroport, elle indique les points d'arrivée d'un avion mais
-aussi les terminaux qu'ils auraient accès.
+Cette classe représente un aéroport, elle indique les points d'arrivée d'un
+avion mais aussi les terminaux qu'ils auraient accès.
 
 ```
 Tower& get_tower();
@@ -133,13 +133,14 @@ Cette fonction s'occupe de dessiner l'aéroport dans la fenêtre.
 ```
 void move() override;
 ```
-Cette fonction s'occupe de faire avancer l'état des services au sein des terminaux.
-C'est-à-dire, on fait défiler les étapes de l'embarquation vers le décollage de l'avion.
+Cette fonction s'occupe de faire avancer l'état des services au sein des
+terminaux. C'est-à-dire, on fait défiler les étapes de l'embarquation vers le
+décollage de l'avion.
 
 ### Terminal
 
-Cette classe représente les terminaux, elle va permettre d'accueillir les passagers d'un
-avion et est capable d'indiquer son état.
+Cette classe représente les terminaux, elle va permettre d'accueillir les
+passagers d'un avion et est capable d'indiquer son état.
 
 ```
 bool in_use() const;
@@ -171,17 +172,22 @@ void move() override;
 ```
 Avance à la prochaine étape de débarcation/embarcation des passagers dans l'avion.
 
-**Réalisez ensuite un schéma présentant comment ces différentes classes intéragissent ensemble.**
+**Réalisez ensuite un schéma présentant comment ces différentes classes
+intéragissent ensemble.**
 
 voir TASK_0.B.1
 
-**Quelles classes et fonctions sont impliquées dans la génération du chemin d'un avion ?**
+**Quelles classes et fonctions sont impliquées dans la génération du chemin
+d'un avion ?**
 
-La classe **tower** se charge de générer des waypoint pour l'avion avec la fonction `get_instructions(Aircraft& aircraft)`.
+La classe **tower** se charge de générer des waypoint pour l'avion avec la
+fonction `get_instructions(Aircraft& aircraft)`.
 
-**Quel conteneur de la librairie standard a été choisi pour représenter le chemin ? Expliquez les intérêts de ce choix.**
+**Quel conteneur de la librairie standard a été choisi pour représenter le 
+chemin ? Expliquez les intérêts de ce choix.**
 
-Le conteneur utilisé est un **Deque** car on voudrait faire en sorte que l'avion suive un chemin circulaire
+Le conteneur utilisé est un **Deque** car on voudrait faire en sorte que l'avion
+suive un chemin circulaire
 lorsqu'il est en attente d'un terminal libre.
 Cela permet donc d'avoir un chemin continu à l'infini sans faire quoique ce soit.
 

@@ -71,11 +71,11 @@ private:
     };
 
     static inline const std::array<Point2D, Coordinate::Count> _texture_shifts {
-        Point2D { 0, 0 }, Point2D { 1, 0 }, Point2D { 0, 1 }, Point2D { 1, 1 }
+        Point2D { .0f, .0f }, Point2D { 1.0f, .0f }, Point2D { .0f, 1.0f }, Point2D { 1.0f, 1.0f }
     };
 
     static inline const std::array<Point2D, Coordinate::Count> _screen_shifts {
-        Point2D { -1, 1 }, Point2D { 1, 1 }, Point2D { -1, -1 }, Point2D { 1, -1 }
+        Point2D { -1.0f, 1.0f }, Point2D { 1.0f, 1.0f }, Point2D { -1.0f, -1.0f }, Point2D { 1.0f, -1.0f }
     };
 
     void draw_point(Coordinate coordinate, const Point2D& screen_pos, const Point2D& screen_dim,

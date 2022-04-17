@@ -66,7 +66,7 @@ void TowerSimulation::display_help() const
 void TowerSimulation::init_airport()
 {
     assert (airport == nullptr);
-    airport = new Airport { &manager, one_lane_airport, Point3D { 0, 0, 0 },
+    airport = new Airport { &manager, one_lane_airport, Point3D { .0f, .0f, .0f },
                             new img::Image { one_lane_airport_sprite_path.get_full_path() } };
 
     GL::display_queue.emplace_back(airport);

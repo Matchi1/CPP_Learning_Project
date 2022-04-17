@@ -13,13 +13,12 @@ public:
 
     Point() = default;
 
-    Point(ElementType x, ElementType y)
-        : values { x, y } {
-            static_assert(Size == 2);
+    template <typename... elements>
+    Point(ElementType first, elements&&... rest)
+        : values { first, rest... } {
+            constexpr size_t size = sizeof...(rest);
+            static_assert(Size == size + 1);
         }
-
-    Point(ElementType x, ElementType y, ElementType z)
-        : values { x, y, z } {}
 
     ElementType& x() { return values[0]; }
     ElementType x() const { return values[0]; }
@@ -71,9 +70,9 @@ public:
 
     Point& operator*=(const Point& other)
     {
-        auto& point = *this;
-        point *= other;
-        return point;
+        std::transform(values.begin(), values.end(), other.values.begin(), values.begin(),
+                std::multiplies<ElementType>());
+        return *this;
     }
 
     Point operator+(const Point& other) const
