@@ -409,6 +409,18 @@ Commit 549faf555dd964db03d633136e648f6440fc3921
 3. voir commit 46f74ae0abd084882a006081c440a489e7efe4ca 
 4. voir commit d2087c3c21a32675ddd2e68bbeb8e94f55c5d41a 
 
+### Exercice D
+
+1.
+
+```
+bool Aircraft::is_low_on_fuel() const
+{
+    return fuel < 200;
+}
+```
+
+
 # TASK 4
 
 ## Objective 1
