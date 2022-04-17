@@ -357,7 +357,7 @@ Donc, c'est bien à AircraftManager de gérer la destruction des Aircrafts.
 
 # TASK 2
 
-# Exercice A
+## Exercice A
 
 ```
 void TowerSimulation::display_help() const
@@ -371,7 +371,9 @@ void TowerSimulation::display_help() const
 }
 ```
 
-# Exercice B
+## Exercice B
+
+1.
 
 ```
 aircrafts.erase(std::remove_if(aircrafts.begin(),
@@ -380,6 +382,12 @@ aircrafts.erase(std::remove_if(aircrafts.begin(),
                               aircrafts.end());
 ```
 
+2.
+
+C'est au **AircraftManager** de compter le nombre de aircrafts, car c'est lui
+qui a la responsabilité de gérer les aircrafts.
+On aurait également pu faire en sorte de rajouter ce compteur dans
+**AircraftFactory** car elle s'occupe de la création des aircrafts.
 
 # TASK 4
 
