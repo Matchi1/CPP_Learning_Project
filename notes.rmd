@@ -355,6 +355,23 @@ devrait pas pouvoir avoir accès à l'objet qui le gère.
 
 Donc, c'est bien à AircraftManager de gérer la destruction des Aircrafts.
 
+# TASK 2
+
+# Exercice A
+
+```
+void TowerSimulation::display_help() const
+{
+    ...
+    for (const auto& [key, value] : GL::keystrokes)
+    {
+        std::cout << key << ' ';
+    }
+    ...
+}
+```
+
+
 # TASK 4
 
 ## Objective 1
