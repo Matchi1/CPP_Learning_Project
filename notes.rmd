@@ -357,7 +357,9 @@ Donc, c'est bien à AircraftManager de gérer la destruction des Aircrafts.
 
 # TASK 2
 
-## Exercice A
+## OBJECTIVE 1
+
+### Exercice A
 
 ```
 void TowerSimulation::display_help() const
@@ -371,7 +373,7 @@ void TowerSimulation::display_help() const
 }
 ```
 
-## Exercice B
+### Exercice B
 
 1.
 
@@ -389,10 +391,16 @@ qui a la responsabilité de gérer les aircrafts.
 On aurait également pu faire en sorte de rajouter ce compteur dans
 **AircraftFactory** car elle s'occupe de la création des aircrafts.
 
-## Exercice C
+### Exercice C
 
 voir *src/geometry.hpp*
 Commit 549faf555dd964db03d633136e648f6440fc3921
+
+## OBJECTIVE 2
+
+### Exercice A
+
+` int fuel = 150 + rand() % (2850);`
 
 # TASK 4
 
