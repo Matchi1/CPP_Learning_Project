@@ -402,6 +402,13 @@ Commit 549faf555dd964db03d633136e648f6440fc3921
 
 ` int fuel = 150 + rand() % (2850);`
 
+### Exercice B
+
+1. voir commit 0ed01c58979e4307e788734cfeb0e424deafa72b
+2. voir commit 8348b77a381c37b2168038a198026af2bdd54096 
+3. voir commit 46f74ae0abd084882a006081c440a489e7efe4ca 
+4. voir commit d2087c3c21a32675ddd2e68bbeb8e94f55c5d41a 
+
 # TASK 4
 
 ## Objective 1
