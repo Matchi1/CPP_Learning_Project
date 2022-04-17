@@ -389,6 +389,11 @@ qui a la responsabilité de gérer les aircrafts.
 On aurait également pu faire en sorte de rajouter ce compteur dans
 **AircraftFactory** car elle s'occupe de la création des aircrafts.
 
+## Exercice C
+
+voir *src/geometry.hpp*
+Commit 549faf555dd964db03d633136e648f6440fc3921
+
 # TASK 4
 
 ## Objective 1
