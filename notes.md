@@ -175,7 +175,7 @@ Avance à la prochaine étape de débarcation/embarcation des passagers dans l'a
 **Réalisez ensuite un schéma présentant comment ces différentes classes
 intéragissent ensemble.**
 
-voir TASK_0.B.1
+voir TASK_0_B_1.png
 
 **Quelles classes et fonctions sont impliquées dans la génération du chemin
 d'un avion ?**
